@@ -1,25 +1,132 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2>緊急通報系統</h2>
+    <button id="run">開啓網路直播攝像頭</button><Br />
+    <button id="run2">開啓網路直播攝像頭2</button><Br />
+    <h4>影片來源</h4>
+    <video id="webcam"></video>
+    <h4>影片來源2</h4>
+    @*<video controls>
+        <source src="http://127.0.0.1:12345/video_feed" type="video/ogg" />
+        Your browser does no support the video tag.
+    </video>*@
+</body>
+</html>
+<script type="text/javascript">
+    navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
+    //navigator.mediaDevices.getUserMedia(myConstraints);
+    if (!navigator.getUserMedia) {
+        alert("您的瀏覽器不支持");
+    }
 
-<h2>緊急通報系統</h2>
+    var btn = document.getElementById('run');
+    btn.onclick = startWebcam_front;
 
-<table>
+    var btn2 = document.getElementById('run2');
+    btn2.onclick = startWebcam_back;
+    //確認讀取的鏡頭畫面，取得權限
+    //The video source is facing toward the user; this includes, for example, the front-facing camera on a smartphone.
+    function startWebcam_front(e) {
+        navigator.getUserMedia({
+            video:  { width: 480, height: 360 } ,
+            audio: false
+        }, onSuccess, onError);
+        //video 畫面 ， audio 影像
+        function onSuccess(stream) {
+
+            var video = document.getElementById('webcam');
+
+            if (window.URL) {
+                video.srcObject = stream;
+            } else {
+                video.src = stream;
+            }
+
+            video.autoplay = true;
+        }
+
+        function onError() { }
+    }
+    //This is the back camera on a smartphone.
+    function startWebcam_back(e) {
+        navigator.getUserMedia({
+            video: { width: 480, height: 360 },
+            audio: false
+        }, onSuccess, onError);
+        //video 畫面 ， audio 影像
+        function onSuccess(stream) {
+
+            var video = document.getElementById('webcam');
+
+            if (window.URL) {
+                video.srcObject = stream;
+            } else {
+                video.src = stream;
+            }
+
+            video.autoplay = true;
+        }
+
+        function onError() { }
+    }
+    //
+    function startWebcam(e) {
+        navigator.getUserMedia({
+            video: { facingMode: { exact: "environment" } },
+            audio: false
+        }, onSuccess, onError);
+        //video 畫面 ， audio 影像
+        function onSuccess(stream) {
+
+            var video = document.getElementById('webcam');
+
+            if (window.URL) {
+                video.srcObject = stream;
+            } else {
+                video.src = stream;
+            }
+
+            video.autoplay = true;
+        }
+
+        function onError() { }
+    }
+</script>
+@*<body>
+    <h2>緊急通報系統</h2>
     <div>
-        <video src="clip.mp4" controls></video>
-        <button>按鈕</button>
+        <h4>畫面來源</h4>
+        <video></video>
+
+        <button id=" button1-1 onclick="myFunction();">按鈕</button>
+        <button id=" button1-2 onclick="myFunction();">放大</button>
+        <button id=" button1-3 onclick="myFunction();">擷取</button>
+
+
+        <video></video>
+        <button id=" button2 onclick="myFunction();">按鈕</button>
+        <hr />
+        <h4>畫面來源</h4>
+        <video src="http://127.0.0.1:12345/video_feed"></video>
+        <button id=" button3 onclick="myFunction();">按鈕</button>
+
+
+        <video></video>
+        <button id=" button4" onclick="myFunction();">按鈕</button>
+        <hr />
     </div>
-    <div>
-        <video src="clip.mp4" controls></video>
-        <button>按鈕</button>
-    </div>
-    <div>
-        <video src="clip.mp4" controls></video>
-        <button>按鈕</button>
-    </div>
-    <div>
-        <video src="clip.mp4" controls></video>
-        <button>按鈕</button>
-    </div>
-</table>
+
+
+
+
+    <script>
+        function myFunction() {
+            var r = confirm("--是否確定要刪除?!--");
+            console.log("click");
+        }
+    </script>*@
