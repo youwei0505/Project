@@ -9,13 +9,14 @@
     <h2>緊急通報系統</h2>
     <button id="run">開啓網路直播攝像頭</button><Br />
     <button id="run2">開啓網路直播攝像頭2</button><Br />
+    <button id="run3">開啓網路直播攝像頭3</button><Br />
     <h4>影片來源</h4>
     <video id="webcam"></video>
     <h4>影片來源2</h4>
     @*<video controls>
-        <source src="http://127.0.0.1:12345/video_feed" type="video/ogg" />
-        Your browser does no support the video tag.
-    </video>*@
+            <source src="http://127.0.0.1:12345/video_feed" type="video/ogg" />
+            Your browser does no support the video tag.
+        </video>*@
 </body>
 </html>
 <script type="text/javascript">
@@ -27,7 +28,7 @@
 
     var btn = document.getElementById('run');
     btn.onclick = startWebcam_front;
-
+    
     var btn2 = document.getElementById('run2');
     btn2.onclick = startWebcam_back;
     //確認讀取的鏡頭畫面，取得權限
@@ -75,10 +76,39 @@
 
         function onError() { }
     }
+
+    var  device_id;
+    
+    
+    //----------------------mutiple
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        console.log("enumerateDevices() not supported.");
+    }
+    // List cameras and microphones.
+    navigator.mediaDevices.enumerateDevices()
+        .then(function (devices) {
+            devices.forEach(function (device) {
+                console.log(device.kind + ": " + device.label +
+                    " id = " + device.deviceId);
+                if (device.kind == "videoinput") {
+                    console.log("videoinput");
+                    device_id = device.deviceId;
+                    console.log("~device_id~ = ",device_id);
+                }
+            });
+        })
+        .catch(function (err) {
+            console.log(err.name + ": " + err.message);
+        });
+    console.log(device_id);
+
+    var btn3 = document.getElementById('run3');
+    btn3.onclick = startWebcam_test;
     //
-    function startWebcam(e) {
+    function startWebcam_test(e) {
+        console.log("@@device_id = ", device_id);
         navigator.getUserMedia({
-            video: { facingMode: { exact: "environment" } },
+            video: { deviceId: device_id } ,
             audio: false
         }, onSuccess, onError);
         //video 畫面 ， audio 影像
@@ -97,24 +127,6 @@
 
         function onError() { }
     }
-    //----------------------mutiple
-    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-        console.log("enumerateDevices() not supported.");
-    }
-
-    // List cameras and microphones.
-
-    navigator.mediaDevices.enumerateDevices()
-        .then(function (devices) {
-            devices.forEach(function (device) {
-                console.log(device.kind + ": " + device.label +
-                    " id = " + device.deviceId);
-            });
-        })
-        .catch(function (err) {
-            console.log(err.name + ": " + err.message);
-        });
-
 </script>
 @*<body>
     <h2>緊急通報系統</h2>
