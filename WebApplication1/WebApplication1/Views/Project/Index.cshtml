@@ -10,6 +10,7 @@
     <button id="run">開啓網路直播攝像頭</button><Br />
     <button id="run2">開啓網路直播攝像頭2</button><Br />
     <button id="run3">開啓網路直播攝像頭3</button><Br />
+    <button id="stop">關閉網路直播攝像頭</button><Br />
     <h4>影片來源</h4>
     <video id="webcam"></video>
     <h4>影片來源2</h4>
@@ -31,6 +32,10 @@
     
     var btn2 = document.getElementById('run2');
     btn2.onclick = startWebcam_back;
+
+    var stop = document.getElementById('stop');
+    stop.onclick = stopBothVideoAndAudio;
+    
     //確認讀取的鏡頭畫面，取得權限
     //The video source is facing toward the user; this includes, for example, the front-facing camera on a smartphone.
     function startWebcam_front(e) {
@@ -79,7 +84,8 @@
 
     var  device_id;
     
-    
+    //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+    //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices
     //----------------------mutiple
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
         console.log("enumerateDevices() not supported.");
@@ -126,6 +132,13 @@
         }
 
         function onError() { }
+    }
+
+    //stop
+    function stopBothVideoAndAudio(stream) {
+        stream.getTracks().forEach(function (track) {
+            track.stop();
+        });
     }
 </script>
 @*<body>
