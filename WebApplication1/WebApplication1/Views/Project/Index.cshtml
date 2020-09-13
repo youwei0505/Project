@@ -14,12 +14,18 @@
     <h4>影片來源</h4>
     <video id="webcam"></video>
     <h4>影片來源2</h4>
-    @*<video controls>
-            <source src="http://127.0.0.1:12345/video_feed" type="video/ogg" />
-            Your browser does no support the video tag.
-        </video>*@
+    <video controls>
+        <source src="https://127.0.0.1:5000/video_feed" type="video/ogg" />
+        Your browser does no support the video tag.
+    </video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <button id="snap">截圖</button><Br />
+
+    <script src="~/Scripts/script.js"></script>
 </body>
 </html>
+
+
 <script type="text/javascript">
     navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
     //navigator.mediaDevices.getUserMedia(myConstraints);
@@ -77,6 +83,13 @@
             }
 
             video.autoplay = true;
+            // Elements for taking the snapshot
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            // Trigger photo take
+            document.getElementById("snap").addEventListener("click", function () {
+                context.drawImage(video, 0, 0, 640, 480);
+            });
         }
 
         function onError() { }
@@ -129,8 +142,16 @@
             }
 
             video.autoplay = true;
-        }
 
+            // Elements for taking the snapshot
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            // Trigger photo take
+            document.getElementById("snap").addEventListener("click", function () {
+                context.drawImage(video, 0, 0, 640, 480);
+            });
+        }
+        
         function onError() { }
     }
 
@@ -140,6 +161,9 @@
             track.stop();
         });
     }
+
+    
+    
 </script>
 @*<body>
     <h2>緊急通報系統</h2>
