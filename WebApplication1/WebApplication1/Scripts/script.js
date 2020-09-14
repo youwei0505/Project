@@ -133,7 +133,31 @@ function stopBothVideoAndAudio(stream) {
     tracks[0].stop();
 }
 
-    
+
+//IOT conect
+
+var Client = require('node-rest-client').Client;
+
+var client = new Client();
+
+//the important USER infomation 
+var args = {
+    path: {
+        "deviceId": 20651691539,
+        "sensorId": "position"
+    },
+    headers: { "CK": "DKA7ER2P0KKMYZYP3C" }
+};
+
+// direct way  (http://, https://)
+client.get("https://iot.cht.com.tw/iot/v1/device/${deviceId}/sensor/${sensorId}/rawdata", args, function (data, response) {
+    // parsed response body as js object 
+    console.log(data);
+    // raw response 
+    //console.log(response);
+}).on('error', function (err) {
+    console.log('something went wrong on the request', err.request.options);
+});    
     
 //</script >
 //@* <body>

@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly loadAllDepsIntoIdealTree Finishing
+20 silly idealTree:prePrune d
+20 silly idealTree:prePrune ├── debug@2.2.0
+20 silly idealTree:prePrune ├── follow-redirects@1.13.0
+20 silly idealTree:prePrune ├── ms@0.7.1
+20 silly idealTree:prePrune ├── node-rest-client@3.1.0
+20 silly idealTree:prePrune ├── sax@1.2.4
+20 silly idealTree:prePrune ├── xml2js@0.4.23
+20 silly idealTree:prePrune └── xmlbuilder@11.0.1
+21 silly loadIdealTree Finishing
+22 silly currentTree d
+22 silly currentTree ├── debug@2.2.0
+22 silly currentTree ├── follow-redirects@1.13.0
+22 silly currentTree ├── ms@0.7.1
+22 silly currentTree ├── node-rest-client@3.1.0
+22 silly currentTree ├── sax@1.2.4
+22 silly currentTree ├── xml2js@0.4.23
+22 silly currentTree └── xmlbuilder@11.0.1
+23 silly idealTree d
+23 silly idealTree ├── debug@2.2.0
+23 silly idealTree ├── follow-redirects@1.13.0
+23 silly idealTree ├── ms@0.7.1
+23 silly idealTree ├── node-rest-client@3.1.0
+23 silly idealTree ├── sax@1.2.4
+23 silly idealTree ├── xml2js@0.4.23
+23 silly idealTree └── xmlbuilder@11.0.1
+24 silly generateActionsToTake Starting
+25 silly install generateActionsToTake
+26 silly generateActionsToTake Finishing
+27 silly diffTrees action count 1
+28 silly diffTrees update node-rest-client@3.1.0
+29 silly decomposeActions action count 8
+30 silly decomposeActions fetch node-rest-client@3.1.0
+31 silly decomposeActions extract node-rest-client@3.1.0
+32 silly decomposeActions test node-rest-client@3.1.0
+33 silly decomposeActions preinstall node-rest-client@3.1.0
+34 silly decomposeActions build node-rest-client@3.1.0
+35 silly decomposeActions install node-rest-client@3.1.0
+36 silly decomposeActions postinstall node-rest-client@3.1.0
+37 silly decomposeActions finalize node-rest-client@3.1.0
+38 silly executeActions Starting
+39 silly install executeActions
+40 silly doSerial global-install 0
+41 silly doParallel fetch 1
+42 warn locking Error: EACCES: permission denied, open '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock'
+42 warn locking  /home/ben/.npm/_locks/staging-546e848ab2d63484.lock failed { Error: EACCES: permission denied, open '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock'
+42 warn locking   errno: -13,
+42 warn locking   code: 'EACCES',
+42 warn locking   syscall: 'open',
+42 warn locking   path: '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock' }
+43 silly rollbackFailedOptional Starting
+44 silly rollbackFailedOptional Finishing
+45 silly runTopLevelLifecycles Starting
+46 silly runTopLevelLifecycles Finishing
+47 silly install printInstalled
+48 warn enoent ENOENT: no such file or directory, open '/mnt/d/package.json'
+49 warn d No description
+50 warn d No repository field.
+51 warn d No README data
+52 warn d No license field.
+53 verbose stack Error: EACCES: permission denied, open '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock'
+54 verbose cwd /mnt/d/js_project
+55 error Linux 4.4.0-18362-Microsoft
+56 error argv "/usr/bin/node" "/usr/bin/npm" "install"
+57 error node v8.10.0
+58 error npm  v3.5.2
+59 error path /home/ben/.npm/_locks/staging-546e848ab2d63484.lock
+60 error code EACCES
+61 error errno -13
+62 error syscall open
+63 error Error: EACCES: permission denied, open '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock'
+63 error  { Error: EACCES: permission denied, open '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock'
+63 error   errno: -13,
+63 error   code: 'EACCES',
+63 error   syscall: 'open',
+63 error   path: '/home/ben/.npm/_locks/staging-546e848ab2d63484.lock' }
+64 error Please try running this command again as root/Administrator.
+65 verbose exit [ -13, true ]
