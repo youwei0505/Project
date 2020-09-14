@@ -134,6 +134,8 @@ function stopBothVideoAndAudio(stream) {
 }
 
 
+
+//open python need
 //IOT conect
 
 var Client = require('node-rest-client').Client;
