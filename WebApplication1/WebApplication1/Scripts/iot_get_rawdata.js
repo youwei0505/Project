@@ -1,63 +1,25 @@
-var Client = require('node-rest-client').Client;
- 
-var client = new Client();
+console.log("iot_test");
 
-//the important USER infomation 
-var args= {
-	path: {
-		"deviceId":20651691539,
-		"sensorId":"position"
-	},
-	headers: {"CK":"DKA7ER2P0KKMYZYP3C"}
+var device_id = "20651691539";
+var sensor_id = "test";
+var wsMessage = {
+    "ck": "DKA7ER2P0KKMYZYP3C",
+    "resources": [
+        "/v1/device/" + device_id + "/sensor/" + sensor_id + "/rawdata"
+        ]
 };
-
-// direct way  (http://, https://)
-client.get("https://iot.cht.com.tw/iot/v1/device/${deviceId}/sensor/${sensorId}/rawdata", args, function (data, response) {
-    // parsed response body as js object 
-    console.log(data);
-    // raw response 
-    //console.log(response);
-}).on('error', function (err) {
-    console.log('something went wrong on the request', err.request.options);
-});
+var ws = new WebSocket("wss://iot.cht.com.tw:443/iot/ws/rawdata");
 
 
-/*
-var Client = require('node-rest-client').Client;
- 
-var client = new Client();
-
-//the important USER infomation 
-var args= {
-	path: {
-		"deviceId":20651691539,
-		"sensorId":"position"
-	},
-	headers: {"CK":"DKA7ER2P0KKMYZYP3C"}
-};
-
-// direct way  (http://, https://)
-client.get("https://iot.cht.com.tw/iot/v1/device/${deviceId}/sensor/${sensorId}/rawdata", args, function (data, response) {
-    // parsed response body as js object 
-    console.log(data);
-    // raw response 
-    //console.log(response);
-}).on('error', function (err) {
-    console.log('something went wrong on the request', err.request.options);
-});
- 
-
-// registering remote methods 
-client.registerMethod("jsonMethod", "https://iot.cht.com.tw/iot/v1/device/${deviceId}/sensor/${sensorId}/rawdata", "GET");
- 
-client.methods.jsonMethod(args, function (data, response) {
-    // parsed response body as js object 
-    console.log(data);
-    // raw response 
-    //console.log(response);
-});
-
-// handling client error events 
-client.on('error', function (err) {
-    console.error('Something went wrong on the client', err);
-});*/
+ws.onopen = () => {
+    console.log('open connection')
+    console.log(wsMessage);
+    ws.send(JSON.stringify(wsMessage));
+}
+ws.onmessage = function (event) {
+    var result = JSON.parse(event.data);
+    window.alert(result.value+"有人掃了QRcode");
+}
+ws.onclose = function (event)  {
+    console.log('close connection ,reason : '+ event)
+}
