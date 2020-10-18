@@ -37,37 +37,9 @@ function startWebcam_front(e) {
 
     function onError() { }
 }
-//This is the back camera on a smartphone.
-function startWebcam_back(e) {
-    navigator.getUserMedia({
-        video: { width: 480, height: 360 },
-        audio: false
-    }, onSuccess, onError);
-    //video 畫面 ， audio 影像
-    function onSuccess(stream) {
-
-        var video = document.getElementById('webcam');
-
-        if (window.URL) {
-            video.srcObject = stream;
-        } else {
-            video.src = stream;
-        }
-
-        video.autoplay = true;
-        // Elements for taking the snapshot
-        var canvas = document.getElementById('canvas');
-        var context = canvas.getContext('2d');
-        // Trigger photo take
-        document.getElementById("snap").addEventListener("click", function () {
-            context.drawImage(video, 0, 0, 640, 480);
-        });
-    }
-
-    function onError() { }
-}
 
 var device_id;
+var device_label;
 
 //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 //https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices
@@ -84,6 +56,7 @@ navigator.mediaDevices.enumerateDevices()
             if (device.kind == "videoinput") {
                 console.log("videoinput");
                 device_id = device.deviceId;
+                device_label = device.label;
                 console.log("~device_id~ = ", device_id);
             }
         });
@@ -115,6 +88,37 @@ function startWebcam_test(e) {
 
         video.autoplay = true;
 
+        // Elements for taking the snapshot
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        // Trigger photo take
+        document.getElementById("snap").addEventListener("click", function () {
+            context.drawImage(video, 0, 0, 640, 480);
+        });
+    }
+
+    function onError() { }
+}
+
+//This is the back camera on a smartphone.
+function startWebcam_back(e) {
+    navigator.getUserMedia({
+        video: { width: 480, height: 360 },
+        audio: false
+    }, onSuccess, onError);
+    //video 畫面 ， audio 影像
+    function onSuccess(stream) {
+
+        var video = document.getElementById('webcam');
+
+        if (window.URL) {
+            video.srcObject = stream;
+        } else {
+            video.src = stream;
+        }
+        document.getElementById("device_id").innerHTML = device_label;
+
+        video.autoplay = true;
         // Elements for taking the snapshot
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
