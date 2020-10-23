@@ -7,21 +7,26 @@
 <body>
     @*還要修改介面完整程度*@
     <h2>緊急通報系統</h2>
-    <button id="run">開啓網路直播攝像頭</button><Br />
-    <button id="run2">開啓網路直播攝像頭2</button><Br />
-    <button id="run3">開啓網路直播攝像頭3</button><Br />
+    <button id="run">開啓網路直播- 前製攝像頭</button><Br />
+    <button id="run2">開啓網路直播 - 網路攝像頭</button><Br />
+    @*<button id="run3">開啓網路直播攝像頭3</button><Br />*@
     @*<button id="stop">關閉網路直播攝像頭</button><Br />*@
     <h4>影片來源</h4>
     device_id = <p id="device_id"></p>
     <video id="webcam"></video>
-    <h4>影片來源2</h4>
+    @*<br />*@
+    <button id="snap">截圖</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <h4>影片來源</h4>
     <video controls>
         <source src="https://127.0.0.1:5000/video_feed" type="video/ogg" />
-        Your browser does no support the video tag.
     </video>
-    <canvas id="canvas" width="640" height="480"></canvas>
-    <button id="snap">截圖</button><Br />
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/L9Q1HUdUMp0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h4>Youtube來源</h4>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/8jxUHlRZnyc?&autoplay=1&mute=1" frameborder="0"
+            allowfullscreen></iframe>
+
     <script src="~/Scripts/script.js"></script>
     <script src="~/Scripts/iot_get_rawdata.js" type="text/javascript"></script>
 </body>

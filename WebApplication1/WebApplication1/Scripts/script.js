@@ -11,8 +11,8 @@ btn.onclick = startWebcam_front;
 var btn2 = document.getElementById('run2');
 btn2.onclick = startWebcam_back;
 
-var stop = document.getElementById('stop');
-stop.onclick = stopBothVideoAndAudio;
+//var stop = document.getElementById('stop');
+//stop.onclick = stopBothVideoAndAudio;
 
 //確認讀取的鏡頭畫面，取得權限
 //The video source is facing toward the user; this includes, for example, the front-facing camera on a smartphone.
@@ -58,6 +58,7 @@ navigator.mediaDevices.enumerateDevices()
                 device_id = device.deviceId;
                 device_label = device.label;
                 console.log("~device_id~ = ", device_id);
+                console.log("~device_id~ = ", device_label);
             }
         });
     })
