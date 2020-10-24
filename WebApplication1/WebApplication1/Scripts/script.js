@@ -140,63 +140,6 @@ function stopBothVideoAndAudio(stream) {
 
 
 
-////open python need
-////IOT conect
-
-//var Client = require('node-rest-client').Client;
-
-//var client = new Client();
-
-////the important USER infomation 
-//var args = {
-//    path: {
-//        "deviceId": 20651691539,
-//        "sensorId": "position"
-//    },
-//    headers: { "CK": "DKA7ER2P0KKMYZYP3C" }
-//};
 
 //// direct way  (http://, https://)
 //client.get("https://iot.cht.com.tw/iot/v1/device/${deviceId}/sensor/${sensorId}/rawdata", args, function (data, response) {
-//    // parsed response body as js object 
-//    console.log(data);
-//    // raw response 
-//    //console.log(response);
-//}).on('error', function (err) {
-//    console.log('something went wrong on the request', err.request.options);
-//});    
-    
-//</script >
-//@* <body>
-//    <h2>緊急通報系統</h2>
-//    <div>
-//        <h4>畫面來源</h4>
-//        <video></video>
-
-//        <button id=" button1-1 onclick=" myFunction();">按鈕</button>
-//    <button id=" button1-2 onclick=" myFunction();">放大</button>
-//    <button id=" button1-3 onclick=" myFunction(); ">擷取</button>
-
-
-//        < video ></video >
-//            <button id=" button2 onclick=" myFunction(); ">按鈕</button>
-//                < hr />
-//                <h4>畫面來源</h4>
-//                <video src="http://127.0.0.1:12345/video_feed"></video>
-//                <button id=" button3 onclick=" myFunction(); ">按鈕</button>
-
-
-//                    < video ></video >
-//                        <button id=" button4" onclick="myFunction();">按鈕</button>
-//                        <hr />
-//    </div >
-
-
-
-
-//    <script>
-//        function myFunction() {
-//            var r = confirm("--是否確定要刪除?!--");
-//            console.log("click");
-//        }
-//    </script> *@
